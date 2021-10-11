@@ -1,23 +1,19 @@
 import React, { useState, useEffect } from "react";
 import { Table } from 'antd';
-import { DownOutlined } from '@ant-design/icons';
+
 
 export const Albums = () => {
-    const [album, setAlbum] = useState<any>(null);
+     const [album, setAlbum] = useState<any>(null);
     const getRequest = () => {
         fetch('https://jsonplaceholder.typicode.com/albums')
-        .then(res => console.log(res.json()))
-        .catch(err => console.log(err))
+        .then((response) => response.json())
+        .then((data) => console.log(data))
+        .catch((error) => console.log('error', error))
         }
-    useEffect(() => {
-        getRequest()
-      }, []);
+   useEffect(() => {
+       getRequest()
+     }, []);
     return (
-        <Table
-      className="components-table-demo-nested"
-    //   columns={columns}
-    //   expandable={{ expandedRowRender }}
-    //   dataSource={data}
-    />
+       < Table />
     )
 }

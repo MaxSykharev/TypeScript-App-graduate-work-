@@ -1,19 +1,24 @@
-import React, { useEffect, useState} from "react";
+import React,  { useEffect, useState} from "react";
 import { List, Avatar} from 'antd';
-import { resolve } from "dns";
+import { useContext } from 'react';
+import { UserContext } from '../../context/userContext';
 
-// Interface IUsers {
-//     id: Number;
-//     name: String;
-//     email: String
-// };
+
+interface IUsers {
+    id: Number;
+    name: String;
+    email: String
+};
+console.log();
 
 export const UsersList = () => {
-  const [user, setUser] = useState<any>(null);
+  const { user } = useContext(UserContext);
+  const [userList, setUserList] = useState<IUsers>();
     const getRequest =  () => {
       fetch('https://jsonplaceholder.typicode.com/users')
-      .then(res => console.log(res.json()))
-      .catch(err => console.log(err))
+      .then((response) => response.json())
+      .then((data) => console.log(data))
+      .catch((error) => console.log('error', error))
     }
   useEffect(() => {
     getRequest()
@@ -22,12 +27,12 @@ export const UsersList = () => {
     return (
       <List
       itemLayout="horizontal"
-      // dataSource={res}
+      // dataSource={}
       renderItem={item => (
         <List.Item>
           <List.Item.Meta
             avatar={<Avatar src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png" />}
-            title={<a href="https://ant.design">пав</a>}
+            title={<a href="https://ant.design"></a>}
             description="Ant Design, a design language for background applications, is refined by Ant UED Team"
           />
         </List.Item>
