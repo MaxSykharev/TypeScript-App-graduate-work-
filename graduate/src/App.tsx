@@ -2,7 +2,7 @@ import React from 'react';
 import '../src/styles.scss'
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import { UsersList } from './pages/usersPage/index';
-import { Albums } from './pages/AlbomsPage/index';
+import { Albums } from './pages/albumsPage/index';
 import { Posts } from './pages/postsPage/index';
 import { Todos } from './pages/todosPage/index'
 import { UserContextProvider } from './context/userContext';

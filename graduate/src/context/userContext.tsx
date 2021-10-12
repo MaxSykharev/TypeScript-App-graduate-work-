@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { createContext } from 'react';
+import { getRequest } from '../utils';
 
 interface IProps {
   children: JSX.Element;
@@ -23,18 +24,25 @@ interface IUser {
 }
 
 interface IUserContext {
-  user: IUser | null;
+  users: IUser[];
 };
 
 export const UserContext = createContext<IUserContext>({
-  user: null,
+  users: [],
 });
 
 export const UserContextProvider = (props: IProps) => {
-  const userInfo = localStorage.getItem('user');
-  const user = userInfo !== null ? JSON.parse(userInfo) : null;
+  const [users, setUsers] = useState<any>([]);
+  const getUsers =  () => {
+    getRequest('https://jsonplaceholder.typicode.com/users')
+    .then(res => setUsers(res.data))
+    .catch(error => console.log('error', error))    
+  }
+  useEffect(() => {
+    getUsers();
+  }, [])
   return (
-    <UserContext.Provider value={{ user: user }}>
+    <UserContext.Provider value={{ users }}>
       {props.children}
     </UserContext.Provider>
   )

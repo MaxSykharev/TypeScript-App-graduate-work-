@@ -1,22 +1,25 @@
-
 import React, { useEffect, useState} from "react";
+import { getRequest } from "../../utils";
+
+
 
 
 export const Posts = () => {
-
-    const [post, setPost] = useState<any>(null);
-    const getRequest =  () => {
-      fetch('https://jsonplaceholder.typicode.com/posts')
-      .then((response) => response.json())
-      .then((data) => console.log(data))
-      .catch((error) => console.log('error', error))
-    }
+  const [posts, setPosts] = useState<any>([]);
+  const getUsers =  () => {
+    getRequest('https://jsonplaceholder.typicode.com/posts')
+    .then(res => setPosts(res.data))
+    .catch(error => console.log('error', error))    
+  }
   useEffect(() => {
-    getRequest()
-  }, []);
+    getUsers();
+  }, [])
+  
     return (
         <div>
-            Posts
+           
         </div>
     )
 }
+
+
