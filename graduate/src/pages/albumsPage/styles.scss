@@ -1,0 +1,35 @@
+.users-list {
+    display: flex;
+}
+.header-table {
+    border-top: 1px solid black;  
+}
+table {
+    width: 100%;
+    border: 0.5px solid black;
+    border-collapse: collapse;
+}
+ table th, td {
+   width: 30%;
+   border: 0.5px solid black;
+   border-right: 1px solid black;
+   border-left: 1px solid black;
+   height: 50px;
+}
+ .btn-show   {
+   text-align: center;
+  
+}
+.btn-show button {
+    padding: 10px 10px;
+    border-radius: 15%;
+}
+td {
+    padding: 0 10px;
+    transition: 0.5s ease;
+}
+
+td:hover {
+    transition: 0.5s;
+    background-color: #DCDCDC;
+}

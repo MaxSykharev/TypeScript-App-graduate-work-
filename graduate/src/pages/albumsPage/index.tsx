@@ -1,23 +1,66 @@
-import React, { useState, useEffect } from "react";
-import { Table } from 'antd';
-import { useContext } from 'react';
-import { UserContext } from '../../context/userContext';
+import React, { useState, useEffect, useContext, createContext } from "react";
+import { getRequest } from "../../utils";
+import './styles.scss'
+import { UserContext } from "../../context/userContext";
+import { ALBUMS_ENDPOINT } from "../../constants/endpoints";
+import { Link } from "react-router-dom";
 
-export const Albums = () => {
-    // const { user } = useContext(UserContext);
-     const [album, setAlbum] = useState<any>(null);
-    const getRequest = () => {
-        fetch('https://jsonplaceholder.typicode.com/albums')
-        .then((response) => response.json())
-        .then((data) => console.log(data))
-        .catch((error) => console.log('error', error))
+export  interface IAlbum {
+    id: number,
+    userId:number,
+    title:string,
+    album: {},
+}
+export interface IAlbumContext {
+    albums: IAlbum[];
+}
+export const AlbumContext = createContext<IAlbumContext>({
+    albums: [],
+});
+export const Albums = () => {      
+    const { users } = useContext(UserContext); 
+    const [albums, setAlbums] = useState<any>([]); 
+    const getAlbums = () => {
+        getRequest(ALBUMS_ENDPOINT)
+        .then(res => setAlbums(res.data))
+        .catch(error => console.log('error', error))
         }
-   useEffect(() => {
-       getRequest()
+    useEffect(() => {
+        getAlbums()    
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+        console.log(albums);      
      }, []);
     return (
-       <div>
-           {}
-       </div>
+        <div className='album-list'> 
+           <table className='header-table'> 
+           <tr>
+                <th>Username</th>
+                <th>Album</th>
+                <th>action</th>
+            </tr>
+            </table>
+            {albums?.map((album: IAlbum) => (
+                <div key = {album.id}>            
+                    <table>                 
+                        <tr>                      
+                            {users.map(user => {
+                                if(user.id === album.userId)
+                                return (<td key={album.id}>
+                                            {user.name}
+                                        </td>)
+                            })}                                   
+                            <td>
+                                {album.title}
+                            </td>
+                            <td className='btn-show'> 
+                            <Link to={`/album`}>
+                                <button>show photos</button>
+                            </Link>
+                            </td>
+                        </tr>
+                    </table>
+                </div>         
+            ))}
+            </div>
     )
 }

@@ -1,18 +1,20 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { createContext } from 'react';
+import { ALBUMS_ENDPOINT, USERS_ENDPOINT } from '../constants/endpoints';
 import { getRequest } from '../utils';
 
-interface IProps {
+export interface IProps {
   children: JSX.Element;
 };
 
-interface IUser {
+export interface IUser {
     id: number,
     name: string,
     username: string,
+    phone:number,
     email: string,
     address: {
-      street: string,
+      street: string,     
       suite: string,
       city: string,
       zipcode: number,
@@ -23,7 +25,7 @@ interface IUser {
     }
 }
 
-interface IUserContext {
+export interface IUserContext {
   users: IUser[];
 };
 
@@ -34,7 +36,7 @@ export const UserContext = createContext<IUserContext>({
 export const UserContextProvider = (props: IProps) => {
   const [users, setUsers] = useState<any>([]);
   const getUsers =  () => {
-    getRequest('https://jsonplaceholder.typicode.com/users')
+    getRequest(USERS_ENDPOINT)
     .then(res => setUsers(res.data))
     .catch(error => console.log('error', error))    
   }
@@ -42,8 +44,10 @@ export const UserContextProvider = (props: IProps) => {
     getUsers();
   }, [])
   return (
-    <UserContext.Provider value={{ users }}>
+    <UserContext.Provider value={{ users}}>
       {props.children}
     </UserContext.Provider>
   )
 };
+
+

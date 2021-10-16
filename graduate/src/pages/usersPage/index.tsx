@@ -1,30 +1,28 @@
-import React,  { useEffect, useState} from "react";
-import { List, Avatar} from 'antd';
-import { useContext } from 'react';
+import React,  { useContext} from "react";
 import { UserContext } from '../../context/userContext';
-import { getRequest } from "../../utils";
+import { Avatar, Card } from 'antd';
+import { UserOutlined } from '@ant-design/icons';
+import './styles.scss'
 
-
-
-interface IUser {
-    id: number;
-    name: string;
-    email: string
-};
-
-export const UsersList = () => {
+export const Users = () => {
   const { users } = useContext(UserContext);
     return (
-      <div>
-
-     <div>{users.map(user => 
-      <div key={user.id}>
-       <h1>{user.name}</h1>
-       <h2>{user.email}</h2>
-       <h3>{user.id}</h3>
+     <div className='users-list'>{users.map(user => 
+      <div className='user-card' key={user.id}>
+            <Card title='' bordered={false}>
+                <div className="user-info">
+                  <span> 
+                       <p>{user.id}</p>
+                       <Avatar icon={<UserOutlined />} />
+                    </span>
+     
+                <p>{user.name}</p>
+           
+                <p>{user.email}</p>
+                </div>
+            </Card>
       </div>)}
-      </div>
-     </div> 
+    </div> 
     )
       }
 
