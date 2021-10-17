@@ -30,9 +30,10 @@ export const Todos = () => {
       .catch(error => console.log('error', error))
     }
 
-    const [name, setName] = useState<string>("");
-    const [descr, setDescr] = useState<string>("");
+    const [name, setName] = useState<string>('');
+    const [descr, setDescr] = useState<string>('');
 
+  console.log(descr);
   console.log(name);
   
     useEffect(() => {
