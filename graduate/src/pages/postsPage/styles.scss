@@ -1,8 +1,15 @@
+.post_list {
+    display: flex;
+    flex-wrap: wrap;
+    text-align: center;
+}
 .post_content {
     background-color: #E5F3FF;
-    margin: 20px 10%;
     border-radius: 12px;
-    text-align: center;
+    width: 30%;
+    margin: 10px 20px;
+
+
 }
 
 .post_content p {

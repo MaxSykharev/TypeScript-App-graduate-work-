@@ -30,11 +30,11 @@ function App() {
       </ul>
     </div>
     <Switch>
-        <Route exact path= "/albums/album" component={ Album } />
-        <Route exact path="/albums" component={ Albums } />
-        <Route exact path="/users" component={ Users } />
-        <Route exact path="/todos" component={ Todos } />
-        <Route exact path="/posts" component={ Posts } />
+        <Route exact path= "/albums/album/:id" component={ Album } />
+        <Route exact path= "/albums" component={ Albums } />
+        <Route exact path= "/users" component={ Users } />
+        <Route exact path= "/todos" component={ Todos } />
+        <Route exact path= "/posts" component={ Posts } />
       </Switch>
         </Router>
       </UserContextProvider>

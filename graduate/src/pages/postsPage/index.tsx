@@ -23,12 +23,13 @@ interface IComment {
 }
 
 export const Posts = () => {
+  const { users } = useContext(UserContext)
+
   const [posts, setPosts] = useState<any>([])
   const getPosts = () => {
     getRequest(POSTS_ENDPOINT)
     .then(res => setPosts(res.data))
     .catch(error => console.log('error', error))
-
   };
   const [comments, setComments] = useState<any>([])
   const getComments = () => {
@@ -36,7 +37,17 @@ export const Posts = () => {
     .then(res => setComments(res.data))
     .catch(error => console.log('error', error))  
   }
-  const { users } = useContext(UserContext)
+  useEffect(() => {
+    getPosts();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    getComments();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    console.log(posts);
+    console.log(comments);
+    
+    
+  }, []);
+  
   
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [previewPostId, setPreviewPostId] = useState(null);
@@ -52,17 +63,8 @@ export const Posts = () => {
     setIsModalVisible(false);
   };
   
-
-
-
-  useEffect(() => {
-    getPosts();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    getComments();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
 return (
-      <>
+      <div className='post_list'>
         {posts.map((post: IPost) => {
           return (
               <div className='post_content'key={post.id}>              
@@ -113,7 +115,7 @@ return (
               })}
             </div>
         </Modal> 
-      </>
+      </div>
     
   )
 };

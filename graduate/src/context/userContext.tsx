@@ -42,6 +42,7 @@ export const UserContextProvider = (props: IProps) => {
   }
   useEffect(() => {
     getUsers();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
   return (
     <UserContext.Provider value={{ users}}>

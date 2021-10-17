@@ -9,14 +9,9 @@ export  interface IAlbum {
     id: number,
     userId:number,
     title:string,
-    album: {},
+    album: []
 }
-export interface IAlbumContext {
-    albums: IAlbum[];
-}
-export const AlbumContext = createContext<IAlbumContext>({
-    albums: [],
-});
+
 export const Albums = () => {      
     const { users } = useContext(UserContext); 
     const [albums, setAlbums] = useState<any>([]); 
@@ -31,36 +26,36 @@ export const Albums = () => {
         console.log(albums);      
      }, []);
     return (
-        <div className='album-list'> 
-           <table className='header-table'> 
-           <tr>
-                <th>Username</th>
-                <th>Album</th>
-                <th>action</th>
-            </tr>
+<div className='album-list'> 
+    <table className='header-table'> 
+        <tr>
+            <th>Username</th>
+            <th>Album</th>
+            <th>action</th>
+        </tr>
+    </table>
+    {albums?.map((album: IAlbum) => (
+        <div key = {album.id}>            
+            <table>                 
+                <tr>                      
+                {users.map(user => {
+                    if(user.id === album.userId)
+                        return (<td key={album.id}>
+                        {user.name}
+                    </td>)
+                })}                                   
+                <td>
+                    {album.title}
+                </td>
+                <td className='btn-show'> 
+                    <Link to={`/albums/album/${album.id}`}>
+                        <button>show photos</button>
+                    </Link>
+                </td>
+                </tr>
             </table>
-            {albums?.map((album: IAlbum) => (
-                <div key = {album.id}>            
-                    <table>                 
-                        <tr>                      
-                            {users.map(user => {
-                                if(user.id === album.userId)
-                                return (<td key={album.id}>
-                                            {user.name}
-                                        </td>)
-                            })}                                   
-                            <td>
-                                {album.title}
-                            </td>
-                            <td className='btn-show'> 
-                            <Link to={`/album`}>
-                                <button>show photos</button>
-                            </Link>
-                            </td>
-                        </tr>
-                    </table>
-                </div>         
-            ))}
-            </div>
+        </div>         
+    ))}
+</div>
     )
 }

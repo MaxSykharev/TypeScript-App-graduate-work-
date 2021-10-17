@@ -43,7 +43,8 @@ export const Todos = () => {
           <div className='container'>
             <Input value={name} onChange={e => setName(e.target.value)} placeholder="name" />
             <Input value={descr} onChange={e => setDescr(e.target.value)} placeholder="descr" />
-              <button >применить фильтры</button>
+            <Checkbox /> <br />
+            <button >применить фильтры</button>
             <div className='todo-list'>
               {todos?.map((todo: ITodos) => (
                   <div key={todo.id} className="todo-cart">
