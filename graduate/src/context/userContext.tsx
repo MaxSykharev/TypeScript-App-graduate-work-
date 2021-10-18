@@ -8,21 +8,21 @@ export interface IProps {
 };
 
 export interface IUser {
-    id: number,
-    name: string,
-    username: string,
-    phone:number,
-    email: string,
-    address: {
-      street: string,     
-      suite: string,
-      city: string,
-      zipcode: number,
-      geo: {
-        lat: number,
-        lng: number
-}
+  id: number,
+  name: string,
+  username: string,
+  phone: number,
+  email: string,
+  address: {
+    street: string,
+    suite: string,
+    city: string,
+    zipcode: number,
+    geo: {
+      lat: number,
+      lng: number
     }
+  }
 }
 
 export interface IUserContext {
@@ -35,17 +35,17 @@ export const UserContext = createContext<IUserContext>({
 
 export const UserContextProvider = (props: IProps) => {
   const [users, setUsers] = useState<any>([]);
-  const getUsers =  () => {
+  const getUsers = () => {
     getRequest(USERS_ENDPOINT)
-    .then(res => setUsers(res.data))
-    .catch(error => console.log('error', error))    
+      .then(res => setUsers(res.data))
+      .catch(error => console.log('error', error))
   }
   useEffect(() => {
     getUsers();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
   return (
-    <UserContext.Provider value={{ users}}>
+    <UserContext.Provider value={{ users }}>
       {props.children}
     </UserContext.Provider>
   )
