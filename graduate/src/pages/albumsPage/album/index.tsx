@@ -17,7 +17,7 @@ export const Album = () => {
     const [photos, setPhotos] = useState<any>();
     const getPhotos = () => {
         getRequest(`${PHOTOS_ENDPOINT}?albumId=${albumId}`)
-        .then(res => setPhotos(res.data))
+            .then(res => setPhotos(res.data))
             .catch(error => console.log('error', error))
     }
     useEffect(() => {

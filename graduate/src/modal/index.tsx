@@ -1,4 +1,4 @@
-import React, { Dispatch, SetStateAction} from "react";
+import React, { Dispatch, SetStateAction } from "react";
 import './styles.scss';
 
 export interface ModalProps {
@@ -7,7 +7,7 @@ export interface ModalProps {
     setActive: Dispatch<SetStateAction<boolean>>
 }
 
-const Modal = ({active, setActive, children}: ModalProps) => {
+const Modal = ({ active, setActive, children }: ModalProps) => {
     return (
         <div className={active ? 'modal active' : 'modal'} onClick={() => setActive(false)}>
             <div className={active ? 'modal__content active' : 'modal__content'} onClick={e => e.stopPropagation()}>
