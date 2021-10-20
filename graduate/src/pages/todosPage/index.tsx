@@ -10,10 +10,12 @@ import Select from "rc-select";
 
 
 interface ITodos {
+  userId: number,
   id: number,
   title: string,
   username: string,
   completed: boolean,
+  userName: string,
 };
 
 export const Todos = () => {
@@ -35,22 +37,28 @@ export const Todos = () => {
   const [name, setName] = useState<string>('');
   const [descr, setDescr] = useState<string>('');
 
+  const onSearch = () => {
+    const renderSerchItems = todos.filter((todo: ITodos) => todo.title.includes(descr));
+    setTodos(renderSerchItems)
+  }
   console.log(descr);
   console.log(name);
 
   useEffect(() => {
+    const items = todos.map((item: any) => ({ ...item, userName: `${users.find((user) => user.id === item.userId)?.name}` }))
+    setTodos(items);
+  }, [users.length]);
+  useEffect(() => {
     getTodos();
-    // eslint-disable-next-line react-hooks/exhaustive-deps     
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+  console.log(todos);
+
   return (
     <div className='container'>
       <Input value={name} onChange={e => setName(e.target.value)} placeholder="name" />
       <Input value={descr} onChange={e => setDescr(e.target.value)} placeholder="descr" />
-      {/* <Select defaultValue="compleeted" onChange={handleChange}>
-          <Option value='compleeted'>compleeted</Option>
-          <Option value='in-procces'>in procces</Option>
-        </Select> */}
-      <button onClick={() => setName} >применить фильтры</button>
+      <button onClick={onSearch}>применить фильтры</button>
       <div className='todo-list'>
         {todos?.map((todo: ITodos) => (
           <div key={todo.id} className="todo-cart">
