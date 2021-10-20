@@ -33,32 +33,30 @@ export const Todos = () => {
       .then(res => setTodos(res.data))
       .catch(error => console.log('error', error))
   }
-
   const [name, setName] = useState<string>('');
   const [descr, setDescr] = useState<string>('');
+  const [check,setCheck] = useState<boolean>(false)
 
   const onSearch = () => {
-    const renderSerchItems = todos.filter((todo: ITodos) => todo.title.includes(descr));
+    const renderSerchItems = todos.filter((todo: ITodos) => todo.title.includes(descr) && todo.completed);
     setTodos(renderSerchItems)
   }
-  console.log(descr);
-  console.log(name);
 
   useEffect(() => {
-    const items = todos.map((item: any) => ({ ...item, userName: `${users.find((user) => user.id === item.userId)?.name}` }))
-    setTodos(items);
+    // const items = todos.map((todo: ITodos) => ({ ...todos, userName: `${users.find((user) => user.id === todo.userId)?.name}` }))
+    // setTodos(items);
+    
   }, [users.length]);
   useEffect(() => {
     getTodos();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-  console.log(todos);
-
   return (
     <div className='container'>
       <Input value={name} onChange={e => setName(e.target.value)} placeholder="name" />
       <Input value={descr} onChange={e => setDescr(e.target.value)} placeholder="descr" />
       <button onClick={onSearch}>применить фильтры</button>
+      <Checkbox value={check} onChange={e => setCheck(e.target.value)} />
       <div className='todo-list'>
         {todos?.map((todo: ITodos) => (
           <div key={todo.id} className="todo-cart">
