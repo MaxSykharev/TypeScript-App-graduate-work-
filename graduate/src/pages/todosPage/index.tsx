@@ -48,8 +48,8 @@ export const Todos = () => {
   }, []);
 
   const onSearch = () => {
-    const renderSerchItems = todos.filter(todo => todo.title.includes(descr) && todo.completed === check && todo.userName.includes(name));
-    setTodos(renderSerchItems)
+    const renderSearchItems = todos.filter(todo => todo.title.includes(descr) && todo.completed === check && todo.userName.includes(name));
+    setTodos(renderSearchItems)
   }
   return (
     <div className='container'>
