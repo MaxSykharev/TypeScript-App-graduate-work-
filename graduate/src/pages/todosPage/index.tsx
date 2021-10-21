@@ -10,15 +10,14 @@ interface ITodos {
   userId: number,
   id: number,
   title: string,
-  username: string,
   completed: boolean,
   userName: string,
 };
 
 export const Todos = () => {
   const { users } = useContext(UserContext);
-  const [name, setName] = useState<string>('');
-  const [descr, setDescr] = useState<string>('');
+  const [nameValue, setNameValue] = useState<string>('');
+  const [titleValue, setTitleValue] = useState<string>('');
   const [check, setCheck] = useState<boolean>(false);
   const [todos, setTodos] = useState<ITodos[]>([]);
   const getTodos = () => {
@@ -33,11 +32,11 @@ export const Todos = () => {
     console.log(` ${e.target.checked}`);
   }
 
-  useEffect(() => {
-    const items = todos.map((item: any) => ({ ...item, userName: `${users.find((user) => user.id === item.userId)?.name}` }))
-    setTodos(items);
-    console.log(items);
-  }, [users.length]);
+  // useEffect(() => {
+  //   const items = todos.map((item: any) => ({ ...item, userName: `${users.find((user) => user.id === item.userId)?.username}` }))
+  //   setTodos(items);
+  //   console.log(items);
+  // }, [users.length]);
 
   useEffect(() => {
     getTodos();
@@ -45,13 +44,14 @@ export const Todos = () => {
   }, []);
 
   const onSearch = () => {
-    const renderSearchItems = todos.filter(todo => todo.title.includes(descr) && todo.completed === check && todo.userName.includes(name));
+    const renderSearchItems = todos.filter(todo => todo.title.includes(titleValue) && todo.completed === check);
     setTodos(renderSearchItems)
   }
+
   return (
     <div className='container'>
-      <Input value={name} onChange={e => setName(e.target.value)} placeholder="name" />
-      <Input value={descr} onChange={e => setDescr(e.target.value)} placeholder="title" />
+      {/* <Input value={nameValue} onChange={e => setNameValue(e.target.value)} placeholder="name" /> */}
+      <Input value={titleValue} onChange={e => setTitleValue(e.target.value)} placeholder="title" />
       <button onClick={onSearch}>применить фильтры</button>
       <Checkbox value='completed' onChange={handleChange} />
       <div className='todo-list'>
@@ -72,7 +72,7 @@ export const Todos = () => {
                   )
               })
               }
-              title="about user" trigger="hover">
+              title="About user" trigger="hover">
               {users.map(user => {
                 if (user.id === todo.id)
                   return (<h3 key={user.id}>{user.username}</h3>)

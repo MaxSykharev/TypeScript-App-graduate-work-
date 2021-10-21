@@ -9,15 +9,8 @@ import { UserContextProvider } from './context/userContext';
 import { Album } from './pages/albumsPage/album';
 
 
-
-export const Routes = () => {
-  return (
-    <div></div>
-  )
-}
 function App() {
   return (
-    <>
       <UserContextProvider>
         <Router>
           <div className="App">
@@ -26,7 +19,6 @@ function App() {
               <li><a href='/users'>users</a></li>
               <li><a href='/todos'>todos</a></li>
               <li><a href='/posts'>posts</a></li>
-
             </ul>
           </div>
           <Switch>
@@ -38,9 +30,7 @@ function App() {
           </Switch>
         </Router>
       </UserContextProvider>
-    </>
   );
-
 }
 
 export default App;

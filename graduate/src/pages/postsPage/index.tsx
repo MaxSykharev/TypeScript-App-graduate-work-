@@ -42,20 +42,14 @@ export const Posts = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
     getComments();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    console.log(posts);
-    console.log(comments);
-
-
   }, []);
 
 
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [previewPostId, setPreviewPostId] = useState(null);
-  const [previewPostUserId, setPreviewPostUserId] = useState(null);
 
 
   const showModal = (id: any, userId: any) => {
-    setPreviewPostUserId(userId);
     setPreviewPostId(id);
     setIsModalVisible(true);
   };
@@ -89,16 +83,15 @@ export const Posts = () => {
         title={''}
         visible={isModalVisible}
         footer={[
-
         ]}
       >
         <div className="post">
           <div>
             <p className='title'>
-              TITLE POSTA<br></br>{posts.find((item: IPost) => item.id === previewPostId)?.title}
+              {posts.find((item: IPost) => item.id === previewPostId)?.title}
             </p>
             <hr></hr>
-            <p> POST<br></br>{posts.find((item: IPost) => item.id === previewPostId)?.body}</p>
+            <p>{posts.find((item: IPost) => item.id === previewPostId)?.body}</p>
             <hr />
           </div>
         </div>

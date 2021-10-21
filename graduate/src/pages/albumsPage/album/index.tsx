@@ -14,7 +14,7 @@ interface IPhoto {
 
 export const Album = () => {
     const albumId = window.location.pathname.split("/")[3]
-    const [photos, setPhotos] = useState<any>();
+    const [photos, setPhotos] = useState<any>([]);
     const getPhotos = () => {
         getRequest(`${PHOTOS_ENDPOINT}?albumId=${albumId}`)
             .then(res => setPhotos(res.data))
