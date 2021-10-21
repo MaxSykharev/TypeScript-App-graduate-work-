@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext, createContext } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { getRequest } from "../../utils";
 import './styles.scss'
 import { UserContext } from "../../context/userContext";

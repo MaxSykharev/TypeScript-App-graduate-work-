@@ -1,20 +1,22 @@
 .NavBar {
     display: flex;
     justify-content: center;
-    background-color:#FFFAFA;
+    background-color: #FFFAFA;
 }
- ul li a { 
-     text-decoration: none;
-     color: black;
-     font-weight: 500;
- }
- ul {
-     margin: 0;
- }
+
+ul li a {
+    text-decoration: none;
+    color: black;
+    font-weight: 500;
+}
+
+ul {
+    margin: 0;
+}
 
 .NavBar li {
 
     list-style-type: none;
-    padding:  15px 50px;
-    color: white;  
+    padding: 15px 50px;
+    color: white;
 }

@@ -12,12 +12,14 @@
     transition: 0.5s;
     pointer-events: none;
 }
+
 .modal.active {
     opacity: 1;
     transform: scale(1);
     pointer-events: all;
 
 }
+
 .modal__content {
     padding: 20px;
     border-radius: 12px;
@@ -26,6 +28,5 @@
     transition: 0.4s;
     width: 50%;
 }
-.modal__content.active {
-    
-}
+
+.modal__content.active {}

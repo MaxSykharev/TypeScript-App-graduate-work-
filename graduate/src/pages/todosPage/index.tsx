@@ -6,7 +6,6 @@ import { Input, Popover } from 'antd';
 import { TODOS_ENDPOINT } from "../../constants/endpoints";
 import { Checkbox } from 'antd';
 
-
 interface ITodos {
   userId: number,
   id: number,
@@ -18,17 +17,15 @@ interface ITodos {
 
 export const Todos = () => {
   const { users } = useContext(UserContext);
+  const [name, setName] = useState<string>('');
+  const [descr, setDescr] = useState<string>('');
+  const [check, setCheck] = useState<boolean>(false);
   const [todos, setTodos] = useState<ITodos[]>([]);
   const getTodos = () => {
     getRequest(TODOS_ENDPOINT)
       .then((res: any) => setTodos(res.data))
       .catch(error => console.log('error', error))
   }
-  const [name, setName] = useState<string>('');
-  const [descr, setDescr] = useState<string>('');
-  const [check, setCheck] = useState<boolean>(false);
-
-
   function handleChange(value: any) {
     setCheck(value === 'completed' ? false : true);
   }

@@ -1,19 +1,23 @@
-@import '~antd/dist/antd.css';   
+@import '~antd/dist/antd.css';
 
 .container {
     background-color: white;
 }
+
 .todo-list {
     display: flex;
     flex-wrap: wrap;
 }
+
 .inputs-cont {
     text-align: center;
     // padding: 10px;
 }
+
 .inputs-cont input {
     margin: 10px;
 }
+
 .todo-cart {
     width: 30%;
     margin-left: 10px;
@@ -24,9 +28,11 @@
     display: block;
     align-items: center;
 }
+
 h3 {
     width: 30%;
 }
+
 input {
     width: 30%;
 }

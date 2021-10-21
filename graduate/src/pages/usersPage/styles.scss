@@ -1,25 +1,30 @@
 .users-list {
-    display:flex;
+    display: flex;
     flex-wrap: wrap;
     text-align: center;
 }
+
 .user-card {
     width: 50%;
     // margin: 20px;
 }
+
 .user-info {
     background: #E5F3FF;
     border-radius: 25px;
 }
-.user-info  {
+
+.user-info {
     padding: 10px 0 0;
 }
+
 .user-info span p {
     position: absolute;
-    text-align:  end !important;
+    text-align: end !important;
     top: 20px;
     right: 40px;
 }
+
 .user-info p {
     margin: 0;
     font-weight: 500;
