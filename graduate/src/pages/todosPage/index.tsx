@@ -16,7 +16,7 @@ interface ITodos {
 
 export const Todos = () => {
   const { users } = useContext(UserContext);
-  const [nameValue, setNameValue] = useState<string>('');
+  // const [nameValue, setNameValue] = useState<string>('');
   const [titleValue, setTitleValue] = useState<string>('');
   const [check, setCheck] = useState<boolean>(false);
   const [todos, setTodos] = useState<ITodos[]>([]);
