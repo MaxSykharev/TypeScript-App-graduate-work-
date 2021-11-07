@@ -8,7 +8,6 @@ import { Todos } from './pages/todosPage/index'
 import { UserContextProvider } from './context/userContext';
 import { Album } from './pages/albumsPage/album';
 
-
 function App() {
   return (
       <UserContextProvider>
