@@ -15,10 +15,10 @@ function App() {
         <Router>
           <div className="App">
             <ul className='NavBar'>
-              <li><a href='/albums'>albums</a></li>
-              <li><a href='/users'>users</a></li>
-              <li><a href='/todos'>todos</a></li>
-              <li><a href='/posts'>posts</a></li>
+              <li><a href='/albums'>Albums</a></li>
+              <li><a href='/users'>Artist</a></li>
+              <li><a href='/todos'>Todos</a></li>
+              <li><a href='/posts'>Posts</a></li>
             </ul>
           </div>
           <Switch>
